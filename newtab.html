@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexus</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#08090a;color:#f0eeeb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+.top{padding:22px 36px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600}
+.dot{width:6px;height:6px;border-radius:50%;background:#4d9e7a;animation:p 3s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
+.brand-s{font-weight:300;color:rgba(136,142,152,.9)}
+.tr{font-size:13px;color:rgba(136,142,152,.7)}
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 20px;text-align:center}
+.time{font-size:clamp(60px,12vw,108px);font-weight:300;color:#f0eeeb;line-height:1;letter-spacing:-.02em;margin-bottom:8px}
+.date{font-size:13px;color:rgba(136,142,152,.7);letter-spacing:.18em;text-transform:uppercase;margin-bottom:32px}
+.greeting{font-size:clamp(16px,2.5vw,22px);font-weight:300;color:rgba(240,238,235,.6);margin-bottom:7px}
+.sub{font-size:13px;color:rgba(68,72,80,.9);margin-bottom:40px}
+.open-btn{background:#f0eeeb;color:#08090a;border:none;padding:14px 44px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:background .15s}
+.open-btn:hover{background:rgba(240,238,235,.82)}
+.stats{display:flex;justify-content:center;gap:1px;background:rgba(255,255,255,.07);margin:0 36px 36px;flex-shrink:0}
+.sc{background:#08090a;padding:16px 28px;text-align:center;min-width:90px}
+.sn{font-size:26px;font-weight:300;color:#f0eeeb;line-height:1;margin-bottom:3px}
+.sn.w{color:#c87d4a}.sn.g{color:#4d9e7a}
+.sl{font-size:9px;color:rgba(68,72,80,.9);letter-spacing:.1em;text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,255,255,.07);margin:0 36px 36px;max-width:900px;width:100%;align-self:center}
+.card{background:#0e1013;padding:18px 20px;cursor:pointer;transition:background .15s;border-left:2px solid transparent}
+.card:hover{background:#141720}
+.card.urg{border-left-color:#c87d4a;background:rgba(200,125,74,.04)}
+.card.urg:hover{background:rgba(200,125,74,.08)}
+.card.act{border-left-color:#4d9e7a;background:rgba(77,158,122,.03)}
+.ct{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(68,72,80,.9);margin-bottom:4px}
+.card.urg .ct{color:rgba(200,125,74,.7)}.card.act .ct{color:rgba(77,158,122,.7)}
+.cl{font-size:13px;font-weight:500;margin-bottom:4px;line-height:1.4}
+.cs{font-size:11px;color:rgba(136,142,152,.8);line-height:1.5;margin-bottom:9px}
+.ca{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(68,72,80,.9)}
+.ins{background:rgba(16,42,67,.35);border-top:1px solid rgba(16,42,67,.6);padding:14px 36px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.ins-l{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(100,150,200,.5);margin-bottom:2px;flex-shrink:0}
+.ins-t{font-size:11px;color:rgba(240,238,235,.65);line-height:1.5}
+.no-key{background:rgba(200,125,74,.08);border-top:1px solid rgba(200,125,74,.2);padding:11px 36px;display:none;align-items:center;justify-content:space-between;flex-shrink:0}
+.nkt{font-size:11px;color:rgba(200,125,74,.8)}
+.nkb{background:none;border:1px solid rgba(200,125,74,.3);color:#c87d4a;font-family:inherit;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;cursor:pointer;transition:all .15s}
+.nkb:hover{background:rgba(200,125,74,.12)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand"><div class="dot"></div>R&amp;W <span class="brand-s">Nexus</span></div>
+  <div class="tr" id="tr"></div>
+</div>
+<div class="hero">
+  <div class="time" id="time-el">12:00</div>
+  <div class="date" id="date-el">Loading&#8230;</div>
+  <div class="greeting" id="greeting">Good morning.</div>
+  <div class="sub" id="sub">Loading your pipeline&#8230;</div>
+  <button class="open-btn" id="open-btn">Open Nexus Panel</button>
+</div>
+<div class="stats" id="stats" style="display:none"></div>
+<div class="cards" id="cards" style="display:none"></div>
+<div class="no-key" id="no-key">
+  <div class="nkt">Add your Anthropic API key to unlock full AI</div>
+  <button class="nkb" id="no-key-btn">Add in Settings</button>
+</div>
+<div class="ins" id="ins" style="display:none">
+  <div><div class="ins-l">Nexus Insight</div><div class="ins-t" id="ins-t"></div></div>
+  <button id="ins-x" style="background:none;border:none;color:rgba(68,72,80,.8);cursor:pointer;font-size:13px;flex-shrink:0;margin-left:auto;font-family:inherit">&#10005;</button>
+</div>
+<script src="newtab.js"></script>
+</body>
+</html>
