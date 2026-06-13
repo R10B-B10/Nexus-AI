@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "R&W Nexus Pro",
+  "version": "11.1.0",
+  "description": "AI second brain for elite real estate agents.",
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "alarms",
+    "notifications",
+    "tabs",
+    "windows"
+  ],
+  "host_permissions": [
+    "https://api.anthropic.com/*",
+    "https://api.rentcast.io/*",
+    "https://realty-in-us.p.rapidapi.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "overlay.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
