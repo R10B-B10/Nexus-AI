@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:260px;background:#08090a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.h{padding:14px 16px 12px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.br{display:flex;align-items:center;gap:8px}
+.d{width:6px;height:6px;border-radius:50%;background:#4d9e7a;animation:p 2s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
+.nm{color:#f0eeeb;font-size:15px;font-weight:600}
+.nm span{font-weight:300;color:rgba(136,142,152,.9)}
+.open-btn{display:block;width:calc(100% - 24px);margin:12px;background:#f0eeeb;color:#08090a;border:none;padding:13px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:inherit}
+.open-btn:hover{background:#d9d7d4}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);margin:0 12px 10px}
+.sc{background:#08090a;padding:9px 6px;text-align:center}
+.sn{font-size:20px;font-weight:300;color:#f0eeeb;line-height:1;margin-bottom:2px}
+.sn.w{color:#c87d4a}.sn.g{color:#4d9e7a}
+.sl{font-size:8px;color:rgba(68,72,80,.9);letter-spacing:.08em;text-transform:uppercase}
+.ql{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(68,72,80,.9);padding:0 12px 6px}
+.qb{width:100%;background:rgba(255,255,255,.03);border:none;border-left:2px solid transparent;padding:8px 10px;font-family:inherit;font-size:11px;color:rgba(240,238,235,.6);cursor:pointer;text-align:left;transition:all .15s;margin-bottom:1px;display:block}
+.qb:hover{background:rgba(255,255,255,.07);color:#f0eeeb}
+.qb.u{border-left-color:#c87d4a;color:rgba(200,125,74,.85)}
+.ft{padding:9px 12px 12px;font-size:9px;color:rgba(68,72,80,.6);letter-spacing:.06em;border-top:1px solid rgba(255,255,255,.05);margin-top:4px}
+.no-key{margin:0 12px 10px;padding:6px 10px;background:rgba(200,125,74,.08);border:1px solid rgba(200,125,74,.2);font-size:10px;color:rgba(200,125,74,.8);cursor:pointer;display:none;text-align:center}
+</style>
+</head>
+<body>
+<div class="h">
+  <div class="br"><div class="d"></div><div class="nm">R&amp;W <span>Nexus</span></div></div>
+  <span style="font-size:9px;color:rgba(68,72,80,.7)">AI</span>
+</div>
+<button class="open-btn" id="open-btn">Open Nexus Panel</button>
+<div id="stats-area"></div>
+<div class="no-key" id="no-key">Add Anthropic API key to enable full AI</div>
+<div class="ql">Quick Actions</div>
+<div id="quick-btns"></div>
+<div class="ft" id="footer">Loading&#8230;</div>
+<script src="popup.js"></script>
+</body>
+</html>
