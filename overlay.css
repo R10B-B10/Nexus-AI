@@ -1,0 +1,4 @@
+#nx-fab{position:fixed;bottom:24px;right:24px;width:46px;height:46px;border-radius:50%;background:#0a0a0a;border:1px solid rgba(255,255,255,.12);cursor:pointer;z-index:2147483640;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.6);transition:all .2s;user-select:none;font-size:14px;color:rgba(240,238,235,.9);font-family:Georgia,serif}
+#nx-fab:hover{background:#111;border-color:rgba(255,255,255,.22);transform:translateY(-2px)}
+#nx-fab.alert{border-color:rgba(200,125,74,.6)}
+#nx-badge{position:absolute;top:-3px;right:-3px;width:16px;height:16px;border-radius:50%;background:#c87d4a;border:2px solid #0a0a0a;font-size:9px;font-family:Arial,sans-serif;color:#0a0a0a;font-weight:700;display:none;align-items:center;justify-content:center}
