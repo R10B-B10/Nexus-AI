@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexus Pro</title>
+<link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-brand">
+    <span class="pulse-dot"></span>
+    <span class="brand-text">R&amp;W <em>Nexus</em></span>
+  </div>
+  <div class="nav-actions">
+    <button class="icon-btn" id="btn-nav-add" title="Add client">
+      <svg width="14" height="14" viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <button class="icon-btn" id="btn-nav-log" title="Log activity">
+      <svg width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/><line x1="4.5" y1="5" x2="9.5" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="4.5" y1="7" x2="9.5" y2="7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="4.5" y1="9" x2="7.5" y2="9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="icon-btn" id="btn-nav-calc" title="Calculator">
+      <svg width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/><line x1="4" y1="5" x2="6" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="8" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="4" y1="7.5" x2="6" y2="7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="8" y1="7.5" x2="10" y2="7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="4" y1="10" x2="6" y2="10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="9" y1="9.5" x2="9" y2="10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="8.5" y1="10" x2="9.5" y2="10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="icon-btn" id="btn-nav-settings" title="Settings">
+      <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="2" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M7 1v1.5M7 11.5V13M1 7h1.5M11.5 7H13M2.9 2.9l1.1 1.1M10 10l1.1 1.1M11.1 2.9L10 4M4 10l-1.1 1.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="tab-bar">
+  <button class="tab active" id="tab-today">Today</button>
+  <button class="tab" id="tab-clients">Clients</button>
+  <button class="tab" id="tab-ai">AI Brain</button>
+  <button class="tab" id="tab-pipeline">Pipeline</button>
+  <button class="tab" id="tab-tools">Tools</button>
+  <button class="tab" id="tab-scripts">Scripts</button>
+  <button class="tab" id="tab-settings">Settings</button>
+</div>
+
+<!-- TODAY -->
+<section class="view active" id="view-today">
+  <div class="hero-block">
+    <div class="hero-greeting" id="hero-greeting">Good morning.</div>
+    <div class="hero-date" id="hero-date"></div>
+    <div class="hero-lines" id="hero-lines"></div>
+  </div>
+  <div class="kpi-row" id="kpi-row"></div>
+  <div class="sec-hdr"><span class="sec-lbl">Priority Actions</span></div>
+  <div class="action-cards" id="action-cards"></div>
+  <div class="intel-strip" id="intel-strip" style="display:none">
+    <div class="intel-icon">&#128173;</div>
+    <div class="intel-text" id="intel-text"></div>
+    <button class="intel-x" id="intel-x">&#10005;</button>
+  </div>
+  <div class="sec-hdr" style="margin-top:8px"><span class="sec-lbl">Recent Activity</span><button class="ghost-btn" id="today-see-log">View all</button></div>
+  <div class="mini-log" id="mini-log"></div>
+  <div class="pad20"></div>
+</section>
+
+<!-- CLIENTS -->
+<section class="view" id="view-clients">
+  <div class="search-row">
+    <div class="search-box">
+      <svg width="12" height="12" viewBox="0 0 12 12" class="search-ico"><circle cx="5" cy="5" r="3.5" stroke="currentColor" stroke-width="1.3" fill="none"/><line x1="7.5" y1="7.5" x2="10.5" y2="10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <input class="search-inp" id="client-search" placeholder="Search clients, budgets, areas&#8230;" autocomplete="off">
+    </div>
+    <button class="filter-btn" id="client-filter-btn">All</button>
+  </div>
+  <div class="list-hdr">
+    <span class="list-meta" id="client-count">All Clients</span>
+    <button class="text-action" id="btn-add-from-clients">&#43; Add</button>
+  </div>
+  <div class="client-list" id="client-list"></div>
+  <button class="add-empty-btn" id="btn-add-from-clients2">
+    <svg width="12" height="12" viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5"/></svg>
+    Add New Client
+  </button>
+</section>
+
+<!-- AI BRAIN -->
+<section class="view" id="view-ai" style="overflow:hidden;display:none">
+  <div class="ai-shell">
+    <div class="ai-messages" id="ai-messages">
+      <div class="ai-intro">
+        <div class="ai-logo">N</div>
+        <div class="ai-intro-body">
+          <div class="ai-intro-name">Nexus AI</div>
+          <div class="ai-intro-text" id="ai-intro-text">Your real estate intelligence engine is ready.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-typing" id="ai-typing">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="ai-chips" id="ai-chips">
+      <button class="chip">Who needs follow-up?</button>
+      <button class="chip">Summarize my pipeline</button>
+      <button class="chip">Draft for hottest lead</button>
+      <button class="chip">Coaching tip</button>
+      <button class="chip">Who to call today?</button>
+      <button class="chip">What's my pipeline worth?</button>
+      <button class="chip">Handle price objection</button>
+      <button class="chip">Analyze my close rate</button>
+      <button class="chip">Winning listing pitch</button>
+      <button class="chip">Best time to follow up?</button>
+    </div>
+    <div class="ai-input-bar">
+      <textarea id="ai-input" class="ai-textarea" placeholder="Ask anything about your pipeline, clients, strategy&#8230;" rows="1"></textarea>
+      <button class="ai-send" id="ai-send">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 7L13 1L9 7L13 13L1 7Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="view" id="view-pipeline">
+  <div class="pipeline-stats" id="pipeline-stats"></div>
+  <div class="pipeline-kanban" id="pipeline-kanban"></div>
+  <div class="sec-hdr" style="margin-top:8px"><span class="sec-lbl">Follow-Up Queue</span></div>
+  <div class="fu-queue" id="fu-queue"></div>
+  <div class="sec-hdr" style="margin-top:8px"><span class="sec-lbl">Activity Log</span><button class="ghost-btn" id="btn-clear-log">Clear</button></div>
+  <div class="mini-log full" id="full-log"></div>
+  <div class="pad20"></div>
+</section>
+
+<!-- TOOLS -->
+<section class="view" id="view-tools">
+  <div class="tools-grid" id="tools-grid"></div>
+  <div class="pad20"></div>
+</section>
+
+<!-- SCRIPTS -->
+<section class="view" id="view-scripts">
+  <div class="sec-hdr" style="padding-top:16px"><span class="sec-lbl">Message Scripts</span><button class="ghost-btn" id="btn-new-script">&#43; New</button></div>
+  <div class="scripts-list" id="scripts-list"></div>
+  <div class="pad20"></div>
+</section>
+
+<!-- SETTINGS -->
+<section class="view" id="view-settings">
+  <div class="settings-scroll">
+    <div class="settings-block">
+      <div class="settings-block-title">AI Connection</div>
+      <div class="settings-block-body">
+        <div class="field-wrap"><label class="field-lbl">Anthropic API Key</label><input type="password" id="s-key" class="field-in" placeholder="sk-ant-&#8230;"></div>
+        <div id="key-status" class="key-status"></div>
+        <div class="field-wrap"><label class="field-lbl">AI Model</label><input id="s-model" class="field-in" placeholder="claude-opus-4-5"></div>
+        <div class="field-wrap"><label class="field-lbl">Your Name</label><input id="s-name" class="field-in" placeholder="e.g. Sarah"></div>
+        <div class="field-wrap"><label class="field-lbl">Brokerage</label><input id="s-brok" class="field-in" placeholder="e.g. The Dawn Group"></div>
+        <div class="field-wrap"><label class="field-lbl">Market / City</label><input id="s-mkt" class="field-in" placeholder="e.g. Austin TX, South Austin focus"></div>
+        <div class="field-wrap"><label class="field-lbl">Years in Real Estate</label><input id="s-yrs" class="field-in" type="number" min="0" max="50" placeholder="5"></div>
+        <div class="field-wrap"><label class="field-lbl">Default Follow-Up Window (days)</label><input id="s-fu" class="field-in" type="number" value="5" min="1" max="60"></div>
+      </div>
+    </div>
+    <div class="settings-block">
+      <div class="settings-block-title">Market Data APIs</div>
+      <div class="settings-block-body">
+        <div class="field-wrap"><label class="field-lbl">RentCast API Key</label><input type="password" id="s-rentcast" class="field-in" placeholder="Your RentCast key&#8230;"></div>
+        <div id="rentcast-status" class="key-status"></div>
+        <div class="field-wrap"><label class="field-lbl">Realty API Key (RapidAPI)</label><input type="password" id="s-realty" class="field-in" placeholder="Your RapidAPI key&#8230;"></div>
+        <div id="realty-status" class="key-status"></div>
+        <p class="settings-footnote" style="margin:4px 0 0">RentCast: <a href="https://app.rentcast.io" target="_blank" style="color:inherit;opacity:.6">app.rentcast.io</a> &nbsp;|&nbsp; Realty API: <a href="https://rapidapi.com/search/realty-in-us" target="_blank" style="color:inherit;opacity:.6">RapidAPI › Realty in US</a></p>
+      </div>
+    </div>
+    <div class="settings-block">
+      <div class="settings-block-title">Notifications</div>
+      <div class="settings-block-body">
+        <div class="toggle-row"><div><div class="toggle-lbl">Follow-Up Reminders</div><div class="toggle-sub">Alert when contact window expires</div></div><button class="tog on" id="tog-fu"></button></div>
+        <div class="toggle-row"><div><div class="toggle-lbl">Daily Briefing</div><div class="toggle-sub">Morning pipeline summary</div></div><button class="tog on" id="tog-brief"></button></div>
+      </div>
+    </div>
+    <button class="save-settings" id="btn-save">Save Settings</button>
+    <p class="settings-footnote">Data stored locally in your browser. API calls send only your message and a client summary.</p>
+  </div>
+</section>
+
+<!-- MODAL: ADD CLIENT -->
+<div class="overlay" id="overlay-add"><div class="sheet" id="sheet-add">
+  <div class="sheet-top"><div class="sheet-title">New Client</div><button class="sheet-x" id="sheet-add-x">&#10005;</button></div>
+  <div class="sheet-hint">Nexus uses every field here to personalize AI conversations.</div>
+  <div class="sheet-body">
+    <div class="field-pair"><div class="field-wrap"><label class="field-lbl">First Name *</label><input id="nc-fn" class="field-in" placeholder="First"></div><div class="field-wrap"><label class="field-lbl">Last Name</label><input id="nc-ln" class="field-in" placeholder="Last"></div></div>
+    <div class="field-pair"><div class="field-wrap"><label class="field-lbl">Phone</label><input id="nc-ph" class="field-in" type="tel" placeholder="(555) 000-0000"></div><div class="field-wrap"><label class="field-lbl">Email</label><input id="nc-em" class="field-in" type="email" placeholder="email@domain.com"></div></div>
+    <div class="field-pair">
+      <div class="field-wrap"><label class="field-lbl">Status</label><select id="nc-st" class="field-in"><option value="Hot">Hot Lead</option><option value="Warm" selected>Warm Lead</option><option value="Cold">Cold Lead</option><option value="Booked">Appt Booked</option><option value="Closed">Closed</option></select></div>
+      <div class="field-wrap"><label class="field-lbl">Type</label><select id="nc-ty" class="field-in"><option value="Buyer">Buyer</option><option value="Seller">Seller</option><option value="Both">Buyer &amp; Seller</option><option value="Investor">Investor</option></select></div>
+    </div>
+    <div class="field-wrap"><label class="field-lbl">Budget</label><input id="nc-bu" class="field-in" placeholder="e.g. $650,000"></div>
+    <div class="field-wrap"><label class="field-lbl">Preferred Areas</label><input id="nc-nb" class="field-in" placeholder="e.g. Downtown, Westlake, near good schools"></div>
+    <div class="field-wrap"><label class="field-lbl">Property Preferences</label><input id="nc-pr" class="field-in" placeholder="e.g. 4BR, garage, modern kitchen, single story"></div>
+    <div class="field-wrap"><label class="field-lbl">Timeline</label><input id="nc-tl" class="field-in" placeholder="e.g. 3 months, ASAP, flexible"></div>
+    <div class="field-wrap"><label class="field-lbl">Notes &amp; Context</label><textarea id="nc-no" class="field-in field-ta" placeholder="e.g. Relocating for work, has dog, prefers modern style, needs home office&#8230;"></textarea></div>
+    <div class="field-wrap"><label class="field-lbl">Lead Source</label><input id="nc-src" class="field-in" placeholder="e.g. Zillow inquiry, referral from Jane Smith"></div>
+    <div class="field-pair"><div class="field-wrap"><label class="field-lbl">Follow-Up Every (days)</label><input id="nc-fd" class="field-in" type="number" value="5" min="1" max="90"></div><div class="field-wrap"><label class="field-lbl">Priority (1&#8211;10)</label><input id="nc-pri" class="field-in" type="number" value="5" min="1" max="10"></div></div>
+  </div>
+  <button class="sheet-cta" id="btn-save-client">Save to Nexus</button>
+</div></div>
+
+<!-- MODAL: CLIENT DETAIL -->
+<div class="overlay" id="overlay-detail"><div class="sheet" id="sheet-detail"></div></div>
+
+<!-- MODAL: LOG ACTIVITY -->
+<div class="overlay" id="overlay-log"><div class="sheet" id="sheet-log">
+  <div class="sheet-top"><div class="sheet-title">Log Activity</div><button class="sheet-x" id="sheet-log-x">&#10005;</button></div>
+  <div class="sheet-body">
+    <div class="field-wrap"><label class="field-lbl">Client</label><select id="log-client" class="field-in"><option value="">Select client&#8230;</option></select></div>
+    <div class="field-wrap"><label class="field-lbl">Activity Type</label><select id="log-type" class="field-in"><option value="call">&#128222; Phone Call</option><option value="meeting">&#129309; Meeting</option><option value="showing">&#127968; Showing</option><option value="offer">&#128203; Offer Made</option><option value="email">&#9993; Email Sent</option><option value="text">&#128172; Text Sent</option><option value="note">&#128221; Note</option></select></div>
+    <div class="field-wrap"><label class="field-lbl">Notes</label><textarea id="log-note" class="field-in field-ta" placeholder="Key points from this interaction&#8230;"></textarea></div>
+  </div>
+  <button class="sheet-cta" id="btn-save-log">Save to Log</button>
+</div></div>
+
+<!-- MODAL: NEW SCRIPT -->
+<div class="overlay" id="overlay-script"><div class="sheet" id="sheet-script">
+  <div class="sheet-top"><div class="sheet-title">New Script</div><button class="sheet-x" id="sheet-script-x">&#10005;</button></div>
+  <div class="sheet-hint">Use [Name], [Budget], [Area], [Agent] as smart placeholders.</div>
+  <div class="sheet-body">
+    <div class="field-wrap"><label class="field-lbl">Script Name</label><input id="sc-name" class="field-in" placeholder="e.g. First Follow-Up Text"></div>
+    <div class="field-wrap"><label class="field-lbl">Body</label><textarea id="sc-body" class="field-in field-ta tall" placeholder="Write your script&#8230;"></textarea></div>
+  </div>
+  <button class="sheet-cta" id="btn-save-script">Save Script</button>
+</div></div>
+
+<!-- MODAL: CALCULATOR -->
+<div class="overlay" id="overlay-calc"><div class="sheet" id="sheet-calc">
+  <div class="sheet-top"><div class="sheet-title">Deal Calculator</div><button class="sheet-x" id="sheet-calc-x">&#10005;</button></div>
+  <div class="sheet-body">
+    <div class="calc-tabs" id="calc-tabs">
+      <button class="calc-tab active" data-calc="commission">Commission</button>
+      <button class="calc-tab" data-calc="mortgage">Mortgage</button>
+      <button class="calc-tab" data-calc="affordability">Affordability</button>
+      <button class="calc-tab" data-calc="roi">ROI</button>
+    </div>
+    <div id="calc-body"></div>
+  </div>
+</div></div>
+
+<!-- MODAL: PROPERTY LOOKUP -->
+<div class="overlay" id="overlay-property"><div class="sheet" id="sheet-property">
+  <div class="sheet-top"><div class="sheet-title">Property Lookup</div><button class="sheet-x" id="sheet-property-x">&#10005;</button></div>
+  <div class="sheet-hint">Pull live value estimates, rent data, and comparable listings from RentCast &amp; Realty.</div>
+  <div class="sheet-body">
+    <div class="field-wrap"><label class="field-lbl">Full Address *</label><input id="prop-address" class="field-in" placeholder="e.g. 123 Main St, Austin TX 78701"></div>
+    <div class="field-pair">
+      <div class="field-wrap"><label class="field-lbl">Property Type</label>
+        <select id="prop-type" class="field-in">
+          <option value="Single Family">Single Family</option>
+          <option value="Condo">Condo</option>
+          <option value="Townhouse">Townhouse</option>
+          <option value="Multi Family">Multi Family</option>
+          <option value="Manufactured">Manufactured</option>
+        </select>
+      </div>
+      <div class="field-wrap"><label class="field-lbl">Bedrooms</label>
+        <select id="prop-beds" class="field-in">
+          <option value="1">1</option><option value="2">2</option>
+          <option value="3" selected>3</option><option value="4">4</option>
+          <option value="5">5</option><option value="6">6+</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-pair">
+      <div class="field-wrap"><label class="field-lbl">Bathrooms</label>
+        <select id="prop-baths" class="field-in">
+          <option value="1">1</option><option value="2" selected>2</option>
+          <option value="3">3</option><option value="4">4</option>
+        </select>
+      </div>
+      <div class="field-wrap"><label class="field-lbl">Sq Ft (optional)</label>
+        <input id="prop-sqft" class="field-in" type="number" placeholder="e.g. 1800">
+      </div>
+    </div>
+    <div class="prop-lookup-btns">
+      <button class="sheet-cta-half" id="btn-lookup-rent">&#128176; Rent Estimate</button>
+      <button class="sheet-cta-half" id="btn-lookup-value">&#127968; Value Estimate</button>
+    </div>
+    <button class="sheet-cta secondary" id="btn-lookup-comps">&#128269; Search Comparable Listings</button>
+    <div id="prop-results"></div>
+  </div>
+</div></div>
+
+<script src="sidepanel.js"></script>
+</body>
+</html>
